@@ -56,7 +56,13 @@ const STEPS = [
 
 export default function BuyerChatAI() {
   const [messages, setMessages] = useState<Message[]>([
-    { id: '0', role: 'assistant', content: STEPS[0].q }
+    { 
+  id: '0', 
+  role: 'assistant', 
+  content: typeof STEPS[0].q === 'function' 
+    ? STEPS[0].q('User') 
+    : STEPS[0].q 
+}
   ]);
   const [input, setInput] = useState('');
   const [step, setStep] = useState(0);
